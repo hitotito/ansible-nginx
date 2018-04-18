@@ -1,0 +1,21 @@
+---
+- name: Mask nginx systemd service before installing
+  systemd:
+    name: nginx
+    masked: true
+
+- name: Install required packages
+  apt:
+    name: nginx
+    update_cache: true
+    state: present
+
+- name: Disable nginx default config
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Unmask nginx systemd service
+  systemd:
+    name: nginx
+    masked: false
