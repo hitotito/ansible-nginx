@@ -1,5 +1,5 @@
 ---
 - name: Install Nginx
   import_tasks: install.yml
-  when: not hostvars[inventory_hostname].ansible_local.nginx.installed
+  when: not hostvars[inventory_hostname].ansible_local.hitotito_nginx.installed
   tags: install

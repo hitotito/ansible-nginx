@@ -16,5 +16,5 @@ galaxy_info:
 
 dependencies:
   - role: hitotito.custom-facts
-    custom_facts_name: hitotito.nginx
+    custom_facts_name: hitotito_nginx
     custom_facts_file: nginx.fact
