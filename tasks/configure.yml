@@ -1,0 +1,9 @@
+---
+- name: CONFIG | Install sites
+  include_tasks: configure_site.yml
+  loop: "{{ nginx_sites }}"
+
+- name: CONFIG | Ensure nginx is started
+  systemd:
+    name: nginx
+    state: started

@@ -1,21 +1,23 @@
 ---
-- name: Mask nginx systemd service before installing
-  systemd:
-    name: nginx
-    masked: true
+# TODO - Not sure if we should mask before installing
+# - name: INSTALL | Mask nginx systemd service before installing
+#   systemd:
+#     name: nginx
+#     masked: true
 
-- name: Install required packages
+- name: INSTALL | Install required packages
   apt:
     name: nginx
     update_cache: true
     state: present
 
-- name: Disable nginx default config
+- name: INSTALL | Disable nginx default config
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
 
-- name: Unmask nginx systemd service
-  systemd:
-    name: nginx
-    masked: false
+# TODO - see comment above about mask
+# - name: INSTALL | Unmask nginx systemd service
+#   systemd:
+#     name: nginx
+#     masked: false

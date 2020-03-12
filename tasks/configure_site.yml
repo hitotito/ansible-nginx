@@ -1,0 +1,16 @@
+---
+# These configuration tasks are used in a loop.  `nginx_sites` list element is available via
+# `item` in this file
+- name: CONFIG | Install site configuration
+  template:
+    src: nginx.config.j2
+    dest: "{{ nginx_sites_available_dir }}/{{ item.name }}"
+    mode: 0644
+  notify:
+    - Reload nginx
+
+- name: CONFIG | Create symlink in site-enabled
+  file:
+    src: "{{ nginx_sites_available_dir }}/{{ item.name }}"
+    dest: "{{ nginx_sites_enabled_dir }}/{{ item.name }}"
+    state: link

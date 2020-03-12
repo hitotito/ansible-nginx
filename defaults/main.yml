@@ -1,0 +1,30 @@
+---
+nginx_sites_available_dir: /etc/nginx/sites-available
+nginx_sites_enabled_dir: /etc/nginx/sites-enabled
+
+# `nginx_sites` is list of object, which contains following attributes:
+# Available attributes:
+#   name: [required] Name of site, this value will be used for configuration filename
+#   root: [required] root directory of site.
+#
+#   charset: [optional] character-set
+#   sendfile: [optional] boolean flag to enable sendfile
+#
+#   locations: [optional] list of location configs
+#     path: location path
+#     content: location rule content
+#
+#   ssl_enabled: [optional] boolean flag to enable ssl, if enabled, it must define certificate configs
+#
+#   access_log: [optional] string: access log location and format
+#   error_log: [optional] string: error log location and format
+#
+# example)
+#  ngninx_sites:
+#   - name: test.local
+#     root: /var/www/test.local
+#     charset: utf-8
+#     location:
+#      - path: /
+#        content: allow all;
+nginx_sites: []
