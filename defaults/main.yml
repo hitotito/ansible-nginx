@@ -1,5 +1,5 @@
 ---
-nginx_sites_available_dir: /etc/nginx/sites-available
+nginx_sites_config_dir: /etc/nginx/sites-available
 nginx_sites_enabled_dir: /etc/nginx/sites-enabled
 
 # `nginx_sites` is list of object, which contains following attributes:
@@ -16,6 +16,7 @@ nginx_sites_enabled_dir: /etc/nginx/sites-enabled
 #
 #   ssl_enabled: [optional] boolean flag to enable ssl, if enabled, it must define certificate configs
 #
+#   log_format: [optional] string: log format
 #   access_log: [optional] string: access log location and format
 #   error_log: [optional] string: error log location and format
 #

@@ -1,16 +1,24 @@
 ---
 # These configuration tasks are used in a loop.  `nginx_sites` list element is available via
 # `item` in this file
+- name: CONFIG | Ensure configuration directory exists
+  file:
+    name: "{{ item.config_dir | default(nginx_sites_config_dir) }}"
+    state: directory
+    group: www-data
+    mode: 0755
+
 - name: CONFIG | Install site configuration
   template:
-    src: nginx.config.j2
-    dest: "{{ nginx_sites_available_dir }}/{{ item.name }}"
+    src: "{{ item.template | default('nginx.config.j2') }}"
+    dest: "{{ item.config_dir | default(nginx_sites_config_dir) }}/{{ item.name }}.conf"
+    group: www-data
     mode: 0644
   notify:
     - Reload nginx
 
 - name: CONFIG | Create symlink in site-enabled
   file:
-    src: "{{ nginx_sites_available_dir }}/{{ item.name }}"
-    dest: "{{ nginx_sites_enabled_dir }}/{{ item.name }}"
+    src: "{{ item.config_dir | default(nginx_sites_config_dir) }}/{{ item.name }}.conf"
+    dest: "{{ nginx_sites_enabled_dir }}/{{ item.name }}.conf"
     state: link
